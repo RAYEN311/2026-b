@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Allow API to work normally
+    RewriteCond %{REQUEST_URI} ^/api
+    RewriteRule ^ - [L]
+
+    # Allow existing files (assets, images...)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Redirect everything else to React
+    RewriteRule ^ index.html [L]
+</IfModule>
